@@ -16,7 +16,15 @@ async function main() {
     const WedTime = await askQuestion("Сколько времени ты фокусировался в Среду? ");
     const ThuTime = await askQuestion("Сколько времени ты фокусировался в Четверг? ");
     const FriTime = await askQuestion("Сколько времени ты фокусировался в Пятницу? ");
-let Average = (Montime + Tuetime + WedTime + ThuTime + FriTime) /5;
+let Average = (parseInt(Montime) + parseInt(Tuetime) + parseInt(WedTime) + parseInt(ThuTime) + parseInt(FriTime)) /5;
+const day = new Map();
+day.set(mon,parseInt(Montime));
+day.set(tue,parseInt(Tuetime));
+day.set(wed,parseInt(WedTime));
+day.set(thu,parseInt(ThuTime));
+day.set(fri,parseInt(FriTime));
+
+
 console.log("Average focus: "+ Average+ " hours/day");
 
 }
