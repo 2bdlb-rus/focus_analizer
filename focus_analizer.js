@@ -15,38 +15,34 @@ async function main() {
   const WedTime = await askQuestion("Сколько времени ты фокусировался в Среду? ");
   const ThuTime = await askQuestion("Сколько времени ты фокусировался в Четверг? ");
   const FriTime = await askQuestion("Сколько времени ты фокусировался в Пятницу? ");
-  parseInt(Montime)
-  parseInt(Tuetime)
-  parseInt(WedTime)
-  parseInt(ThuTime)
-  parseInt(FriTime)
+
   let Average = (parseInt(Montime) + parseInt(Tuetime) + parseInt(WedTime) + parseInt(ThuTime) + parseInt(FriTime)) / 5;
 
   const day = new Map();
-  day.set('Monday',  parseInt(Montime));
+  day.set('Monday', parseInt(Montime));
   day.set('Tuesday', parseInt(Tuetime));
-  day.set('Wednesday',parseInt(WedTime));
-  day.set('Thursday',  parseInt(ThuTime));
+  day.set('Wednesday', parseInt(WedTime));
+  day.set('Thursday', parseInt(ThuTime));
   day.set('Friday', parseInt(FriTime));
 
-const minValue = Math.min(...Array.from(day.values()))
+  const minValue = Math.min(...Array.from(day.values()))
 
-function getMinKey(map) {
-  if (map.size === 0) return null; 
-  const values = Array.from(day.values()).filter(v => typeof v === 'number');
-  if (values.length === 0) return null
-  const entry = [...day.entries()].find(([key, value]) => value === minValue);
-  return entry ? entry[0] : null;
-}
- 
+  function getMinKey(map) {
+    if (map.size === 0) return null;
+    const values = Array.from(day.values()).filter(v => typeof v === 'number');
+    if (values.length === 0) return null
+    const entry = [...day.entries()].find(([key, value]) => value === minValue);
+    return entry ? entry[0] : null;
+  }
+
   console.log("Average focus: " + Average + " hours/day");
-   console.log(`Lowest: ${getMinKey(day)}(${minValue}h)`);
-if (minValue <= 4) {
-  console.log('Advice: Можно лучше!');
-}
-else {
-  console.log("Advice: Так держать!");
-}
+  console.log(`Lowest: ${getMinKey(day)}(${minValue}h)`);
+  if (minValue <= 4) {
+    console.log('Advice: Можно лучше!');
+  }
+  else {
+    console.log("Advice: Так держать!");
+  }
 }
 
- main().catch(console.error)
+main().catch(console.error)
